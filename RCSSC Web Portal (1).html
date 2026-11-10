@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajshahi Collegiate School Math & Science Club (RCSSC)</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts (Inter & JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            rcssc: {
+              red: '#C8102E',
+              'red-dark': '#8B0A1E',
+              'red-glow': '#FF1F44',
+              dark: '#08080A',
+              card: '#0F0F13',
+              border: '#27272A',
+            }
+          },
+          boxShadow: {
+            'glow-red': '0 0 25px rgba(200, 16, 46, 0.45)',
+            'glow-red-lg': '0 0 45px rgba(200, 16, 46, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08080A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272A;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C8102E;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    .animate-glow {
+      animation: pulseGlow 6s infinite ease-in-out;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-card-area, #printable-card-area * {
+        visibility: visible;
+      }
+      #printable-card-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-rcssc-dark text-white font-sans selection:bg-rcssc-red selection:text-white min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+  <!-- Background Red Ambient Glow Effects -->
+  <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-rcssc-red/15 rounded-full blur-[140px] pointer-events-none animate-glow z-0"></div>
+  <div class="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-rcssc-red/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-rcssc-red-dark via-black to-rcssc-red-dark text-center py-1.5 px-4 text-xs font-semibold tracking-wide border-b border-zinc-800 z-50">
+    <span class="inline-flex items-center gap-1.5 text-zinc-200">
+      <span class="w-2 h-2 rounded-full bg-rcssc-red animate-ping"></span>
+      Official Portal of Rajshahi Collegiate School Math & Science Club (RCSSC)
+    </span>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-black/90 border-b border-zinc-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- Official Club Logo & Branding -->
+      <div onclick="switchTab('home')" class="flex items-center gap-3.5 cursor-pointer group">
+        <!-- SVG Representation of the RCSSC Logo -->
+        <div class="w-11 h-11 relative flex items-center justify-center">
+          <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_8px_rgba(200,16,46,0.6)] group-hover:scale-105 transition-transform">
+            <!-- Center Shield Base -->
+            <circle cx="100" cy="100" r="95" fill="#000" stroke="#C8102E" stroke-width="6"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="#C8102E" stroke-width="3"/>
+            
+            <!-- Outer Nodes -->
+            <!-- DNA Node Top Left -->
+            <line x1="60" y1="60" x2="35" y2="35" stroke="#C8102E" stroke-width="8"/>
+            <circle cx="35" cy="35" r="24" fill="#C8102E"/>
+            <path d="M26 30 Q35 22 44 30 M26 40 Q35 48 44 40" stroke="#FFF" stroke-width="2.5" fill="none"/>
+            <line x1="30" y1="31" x2="40" y2="39" stroke="#FFF" stroke-width="2"/>
+            <line x1="30" y1="39" x2="40" y2="31" stroke="#FFF" stroke-width="2"/>
+
+            <!-- E=mc2 Node Top Right -->
+            <line x1="140" y1="60" x2="165" y2="35" stroke="#C8102E" stroke-width="8"/>
+            <circle cx="165" cy="35" r="24" fill="#C8102E"/>
+            <text x="165" y="40" font-family="serif" font-size="12" font-weight="bold" fill="#FFF" text-anchor="middle">E=mc²</text>
+
+            <!-- Pi Node Bottom Right -->
+            <line x1="140" y1="140" x2="165" y2="165" stroke="#C8102E" stroke-width="8"/>
+            <circle cx="165" cy="165" r="24" fill="#C8102E"/>
+            <text x="165" y="174" font-family="serif" font-size="22" font-weight="bold" fill="#FFF" text-anchor="middle">π</text>
+
+            <!-- Center Crest Sections -->
+            <circle cx="100" cy="100" r="55" fill="#FFF" stroke="#C8102E" stroke-width="4"/>
+            <line x1="100" y1="45" x2="100" y2="155" stroke="#C8102E" stroke-width="2"/>
+            <line x1="45" y1="100" x2="155" y2="100" stroke="#C8102E" stroke-width="2"/>
+            <circle cx="100" cy="100" r="53" fill="none" stroke="#C8102E" stroke-width="1.5"/>
+
+            <!-- Center Icons -->
+            <!-- Book & Candle -->
+            <path d="M78 75 Q85 70 92 75 L92 90 Q85 85 78 90 Z" fill="none" stroke="#000" stroke-width="2"/>
+            <line x1="120" y1="88" x2="120" y2="72" stroke="#000" stroke-width="3"/>
+            <path d="M120 70 Q123 65 120 60 Q117 65 120 70 Z" fill="#C8102E"/>
+            <!-- Chemistry Flask -->
+            <path d="M78 135 L86 120 L86 115 L94 115 L94 120 L102 135 Z" fill="none" stroke="#000" stroke-width="2"/>
+            <!-- Cricket / Sports -->
+            <line x1="115" y1="135" x2="132" y2="115" stroke="#000" stroke-width="3.5"/>
+            <circle cx="112" cy="120" r="3" fill="#C8102E"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-base sm:text-lg tracking-wider text-white leading-tight flex items-center gap-2">
+            RCSSC <span class="text-[10px] px-2 py-0.5 rounded bg-rcssc-red/20 border border-rcssc-red/40 text-rcssc-red uppercase tracking-widest hidden sm:inline-block">Est. 1828</span>
+          </h1>
+          <p class="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">Rajshahi Collegiate School</p>
+        </div>
+      </div>
+
+      <!-- Extended Pages Navigation Menu -->
+      <nav class="flex items-center gap-1 sm:gap-2">
+        <button onclick="switchTab('home')" id="tab-home" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-zinc-800 text-white border border-zinc-700/80 flex items-center gap-1.5">
+          <i data-lucide="home" class="w-4 h-4 text-rcssc-red"></i>
+          <span>Home</span>
+        </button>
+        <button onclick="switchTab('about')" id="tab-about" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="info" class="w-4 h-4 text-zinc-400"></i>
+          <span>About</span>
+        </button>
+        <button onclick="switchTab('committee')" id="tab-committee" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="crown" class="w-4 h-4 text-rcssc-red"></i>
+          <span>President & EC</span>
+        </button>
+        <button onclick="switchTab('achievements')" id="tab-achievements" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+          <span>Achievements</span>
+        </button>
+        <button onclick="switchTab('events')" id="tab-events" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="calendar" class="w-4 h-4 text-zinc-400"></i>
+          <span>Events</span>
+        </button>
+        <button onclick="switchTab('register')" id="tab-register" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="user-plus" class="w-4 h-4 text-rcssc-red"></i>
+          <span>Join Club</span>
+        </button>
+        <button onclick="switchTab('verify')" id="tab-verify" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+          <span>Verify</span>
+        </button>
+        
+        <!-- Stealth Hidden Admin Portal Button -->
+        <button onclick="switchTab('admin')" id="tab-admin" class="p-2 text-zinc-800 hover:text-zinc-500 transition rounded-lg hover:bg-zinc-900/50" title="Control Panel">
+          <i data-lucide="lock" class="w-4 h-4"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Dynamic View Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10 flex-grow w-full">
+
+    <!-- ==================== HOME TAB ==================== -->
+    <section id="view-home" class="space-y-12">
+      <!-- Hero Banner -->
+      <div class="relative rounded-3xl p-6 sm:p-12 bg-gradient-to-b from-zinc-900/90 via-rcssc-card to-black border border-zinc-800/80 text-center space-y-6 overflow-hidden shadow-2xl">
+        
+        <!-- Red Glowing Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rcssc-red/10 border border-rcssc-red/40 text-rcssc-red text-xs font-semibold tracking-wide">
+          <i data-lucide="sparkles" class="w-4 h-4 text-rcssc-red"></i> Official Portal • Math & Science Division
+        </div>
+
+        <h2 class="text-3xl sm:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
+          Explore the Frontiers of <span class="text-transparent bg-clip-text bg-gradient-to-r from-rcssc-red via-red-500 to-white">Science & Logic.</span>
+        </h2>
+
+        <p class="max-w-2xl mx-auto text-zinc-400 text-xs sm:text-base leading-relaxed">
+          Welcome to the digital portal of Rajshahi Collegiate School Math & Science Club (RCSSC). Fostering analytical thinking, scientific research, and competitive excellence since inception.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 pt-2">
+          <button onclick="switchTab('register')" class="px-7 py-3.5 bg-gradient-to-r from-rcssc-red to-rcssc-red-dark hover:brightness-110 text-white font-bold rounded-xl shadow-glow-red transition text-sm flex items-center gap-2">
+            <span>Register Membership</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <button onclick="switchTab('verify')" class="px-7 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700/80 font-bold rounded-xl transition text-sm flex items-center gap-2">
+            <i data-lucide="search" class="w-4 h-4 text-rcssc-red"></i>
+            <span>Verify Registered Member</span>
+          </button>
+        </div>
+
+        <!-- Quick Stats Badge Bar -->
+        <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-zinc-800/80 text-center">
+          <div class="p-3">
+            <div class="text-2xl font-black text-white font-mono" id="stat-member-count">0</div>
+            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-semibold">Active Members</div>
+          </div>
+          <div class="p-3">
+            <div class="text-2xl font-black text-rcssc-red font-mono">1828</div>
+            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-semibold">School Legacy</div>
+          </div>
+          <div class="p-3">
+            <div class="text-2xl font-black text-white font-mono">EC-26/27</div>
+            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-semibold">Current Tenure</div>
+          </div>
+          <div class="p-3">
+            <div class="text-2xl font-black text-emerald-400 font-mono">100%</div>
+            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-semibold">Verified Records</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcements & Custom Page Sections Container -->
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+          <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2 text-white">
+            <i data-lucide="file-text" class="text-rcssc-red w-6 h-6"></i> 
+            <span>Announcements & Web Updates</span>
+          </h3>
+          <span class="text-xs text-zinc-500 font-mono">Live CMS Output</span>
+        </div>
+        <div id="home-sections-container" class="grid sm:grid-cols-2 gap-6">
+          <!-- Dynamic Published Sections Inserted Here -->
+        </div>
+      </div>
+
+      <!-- RCSSC President Category Card -->
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+          <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2 text-white">
+            <i data-lucide="crown" class="text-rcssc-red w-6 h-6"></i> 
+            <span>RCSSC President Leadership</span>
+          </h3>
+          <span class="text-xs text-rcssc-red font-mono font-bold uppercase tracking-wider">
+            EXECUTIVE COMMITTEE -26/27
+          </span>
+        </div>
+        
+        <!-- Styled Poster Design based on Image 2 -->
+        <div class="max-w-2xl mx-auto rounded-3xl bg-gradient-to-b from-rcssc-red-dark/80 via-zinc-950 to-black p-6 sm:p-10 border border-rcssc-red/50 shadow-glow-red relative overflow-hidden group">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-rcssc-red/30 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="text-center space-y-4 relative z-10">
+            <div class="inline-block tracking-widest text-xs font-black text-white bg-black/60 px-4 py-1.5 rounded-full border border-rcssc-red/50 uppercase">
+              RCSSC PRESIDENT
+            </div>
+
+            <!-- Profile Portrait Card Container -->
+            <div class="w-48 h-56 sm:w-56 sm:h-64 mx-auto rounded-2xl bg-zinc-900 border-2 border-zinc-200 overflow-hidden shadow-2xl relative flex flex-col justify-end p-4 text-center">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-zinc-900/60 to-transparent flex items-center justify-center">
+                <i data-lucide="user" class="w-20 h-20 text-zinc-700"></i>
+              </div>
+              <div class="relative z-10 bg-black/80 backdrop-blur-md p-2 rounded-xl border border-zinc-700">
+                <h4 class="text-xs sm:text-sm font-black text-white uppercase tracking-wider">ABRAR AL RAZEE</h4>
+                <p class="text-[10px] text-rcssc-red font-mono font-bold">(OYTIZZOH)</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <h3 class="text-2xl sm:text-3xl font-black text-white tracking-wider">ABRAR AL RAZEE (OYTIZZOH)</h3>
+              <p class="text-sm font-bold text-rcssc-red font-mono">SSC-27' • EXECUTIVE COMMITTEE -26/27</p>
+            </div>
+
+            <div class="pt-4 border-t border-zinc-800/80 flex flex-wrap justify-between items-center text-xs text-zinc-400 font-mono gap-2">
+              <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-rcssc-red"></i> +88019777-31344</span>
+              <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-rcssc-red"></i> scienceclubrcs@gmail.com</span>
+              <span class="flex items-center gap-1.5 text-emerald-400"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> RCSSC VERIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT US PAGE ==================== -->
+    <section id="view-about" class="hidden space-y-10">
+      <div class="p-8 sm:p-12 rounded-3xl bg-rcssc-card border border-zinc-800 space-y-6 shadow-2xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rcssc-red/10 border border-rcssc-red/30 text-rcssc-red text-xs font-semibold">
+          <i data-lucide="landmark" class="w-4 h-4"></i> About RCSSC
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Legacy of Scientific Excellence</h2>
+        <p class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+          Rajshahi Collegiate School, established in 1828, holds a prestigious place in the history of education in Bangladesh. The **Rajshahi Collegiate School Math & Science Club (RCSSC)** carries this historic legacy forward by inspiring students to explore mathematics, natural sciences, technology, and analytical problem solving.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 pt-6 border-t border-zinc-800">
+          <div class="p-6 rounded-2xl bg-black border border-zinc-800 space-y-2">
+            <i data-lucide="target" class="w-8 h-8 text-rcssc-red"></i>
+            <h4 class="text-lg font-bold text-white">Our Mission</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">To nurture curiosity, foster logical reasoning, and prepare students for national and international STEM competitions.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-black border border-zinc-800 space-y-2">
+            <i data-lucide="atom" class="w-8 h-8 text-rcssc-red"></i>
+            <h4 class="text-lg font-bold text-white">Core Divisions</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">Mathematics, Physics, Chemistry, Biology, Astronomy, Informatics, and Robotics research groups.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-black border border-zinc-800 space-y-2">
+            <i data-lucide="trophy" class="w-8 h-8 text-rcssc-red"></i>
+            <h4 class="text-lg font-bold text-white">Achievements</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">Consistent top performers in National Science Olympiads, Math Olympiads, and inter-school quiz events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== COMMITTEES PAGE ==================== -->
+    <section id="view-committee" class="hidden space-y-8">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">President & Executive Committee</h2>
+          <p class="text-xs text-zinc-400 mt-1">Rajshahi Collegiate School Math & Science Club Executive Leadership</p>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-rcssc-red/10 border border-rcssc-red/30 text-rcssc-red text-xs font-mono font-bold">
+          EC-26/27 Tenure
+        </span>
+      </div>
+
+      <!-- President Main Feature Card -->
+      <div class="max-w-2xl mx-auto rounded-3xl bg-gradient-to-b from-rcssc-red-dark/80 via-zinc-950 to-black p-8 border border-rcssc-red/50 shadow-glow-red relative overflow-hidden text-center space-y-4">
+        <div class="inline-block tracking-widest text-xs font-black text-white bg-black/60 px-4 py-1.5 rounded-full border border-rcssc-red/50 uppercase">
+          CLUB PRESIDENT
+        </div>
+        <h3 class="text-3xl font-black text-white">ABRAR AL RAZEE (OYTIZZOH)</h3>
+        <p class="text-sm font-bold text-rcssc-red font-mono">SSC-27' • EXECUTIVE COMMITTEE -26/27</p>
+        <p class="text-xs text-zinc-400 max-w-md mx-auto">Leading the Rajshahi Collegiate School Math & Science Club into a new era of competitive science olympiads, research workshops, and student innovation.</p>
+      </div>
+
+      <div id="full-committee-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic EC Cards Rendered Here -->
+      </div>
+    </section>
+
+    <!-- ==================== ACHIEVEMENTS PAGE ==================== -->
+    <section id="view-achievements" class="hidden space-y-8">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2">
+            <i data-lucide="trophy" class="w-7 h-7 text-amber-400"></i> Club Achievements & Honors
+          </h2>
+          <p class="text-xs text-zinc-400 mt-1">Celebrating our awards, Olympiad victories, and science fair milestones.</p>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-mono font-bold">
+          Hall of Fame
+        </span>
+      </div>
+
+      <div id="achievements-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic Achievements Inserted Here -->
+      </div>
+    </section>
+
+    <!-- ==================== EVENTS PAGE ==================== -->
+    <section id="view-events" class="hidden space-y-8">
+      <div class="border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Upcoming & Past Events</h2>
+        <p class="text-xs text-zinc-400 mt-1">Science Olympiads, Workshops, Exhibitions, and Quiz Contests</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4">
+          <div class="flex justify-between items-start">
+            <span class="px-2.5 py-1 rounded bg-rcssc-red/20 border border-rcssc-red/40 text-rcssc-red text-xs font-bold">UPCOMING</span>
+            <span class="text-xs text-zinc-500 font-mono">Date: TBD 2026</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Annual Inter-School Science & Math Olympiad 2026</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Featuring Higher Math, Physics, Chemistry, and Biology problem-solving rounds across Class 6-10 categories.</p>
+          <button onclick="switchTab('register')" class="w-full py-2.5 bg-rcssc-red hover:bg-rcssc-red-dark text-white font-bold rounded-xl text-xs transition">
+            Register to Participate
+          </button>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4 opacity-75">
+          <div class="flex justify-between items-start">
+            <span class="px-2.5 py-1 rounded bg-zinc-800 text-zinc-400 text-xs font-bold">ARCHIVED</span>
+            <span class="text-xs text-zinc-500 font-mono">2025</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Inter-Class Quiz Competition</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">General science and mathematics rapid quiz tournament held at Rajshahi Collegiate School campus.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== REGISTER TAB ==================== -->
+    <section id="view-register" class="hidden max-w-xl mx-auto space-y-8">
+      
+      <!-- Registration Form Card -->
+      <div id="reg-form-container" class="p-6 sm:p-8 rounded-3xl bg-rcssc-card border border-zinc-800 shadow-2xl space-y-6">
+        <div class="text-center space-y-2">
+          <div class="w-12 h-12 rounded-full bg-rcssc-red/10 border border-rcssc-red/30 flex items-center justify-center mx-auto text-rcssc-red">
+            <i data-lucide="user-check" class="w-6 h-6"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold text-white">Club Registration Form</h2>
+          <p class="text-zinc-400 text-xs">Complete membership submission to store info in DB and generate your Member ID card.</p>
+        </div>
+
+        <form onsubmit="handleRegister(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Full Name *</label>
+            <div class="relative">
+              <i data-lucide="user" class="w-4 h-4 absolute left-3.5 top-3 text-zinc-500"></i>
+              <input id="reg-name" required type="text" placeholder="e.g. Abrar Al Razee" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red focus:ring-1 focus:ring-rcssc-red outline-none text-sm font-medium">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Phone Number (Required for DB Verification) *</label>
+            <div class="relative">
+              <i data-lucide="phone" class="w-4 h-4 absolute left-3.5 top-3 text-zinc-500"></i>
+              <input id="reg-phone" required type="tel" placeholder="e.g. 01977731344" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red focus:ring-1 focus:ring-rcssc-red outline-none text-sm font-mono">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Academic Class *</label>
+              <select id="reg-class" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm">
+                <option>Class 6</option>
+                <option>Class 7</option>
+                <option>Class 8</option>
+                <option>Class 9</option>
+                <option selected>Class 10</option>
+                <option>HSC Candidate</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Batch / SSC Year *</label>
+              <input id="reg-batch" required type="text" placeholder="e.g. SSC-27" value="SSC-27'" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm font-medium">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Section (Optional)</label>
+              <input id="reg-section" type="text" placeholder="e.g. Padma / A" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Roll Number (Optional)</label>
+              <input id="reg-roll" type="text" placeholder="e.g. 04" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm font-mono">
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 mt-2 bg-gradient-to-r from-rcssc-red to-rcssc-red-dark font-bold rounded-xl text-sm shadow-glow-red hover:brightness-110 transition flex items-center justify-center gap-2">
+            <i data-lucide="id-card" class="w-4 h-4"></i>
+            <span>Register & Generate Official Card</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Generated Member Digital ID Card -->
+      <div id="reg-card-container" class="hidden space-y-6 text-center">
+        <div class="inline-flex items-center gap-2 text-emerald-400 font-bold text-sm bg-emerald-950/40 border border-emerald-500/30 px-4 py-1.5 rounded-full">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i> Registration Saved to Database!
+        </div>
+
+        <!-- Printable / Interactive Membership ID Card -->
+        <div id="printable-card-area" class="w-full max-w-md mx-auto aspect-[1.58/1] rounded-2xl bg-gradient-to-br from-black via-zinc-900 to-zinc-950 p-6 border border-rcssc-red/60 shadow-glow-red relative overflow-hidden text-left flex flex-col justify-between group">
+          <!-- Card Decorative Ambient Red Glow -->
+          <div class="absolute -top-12 -right-12 w-36 h-36 bg-rcssc-red/25 rounded-full blur-2xl"></div>
+
+          <!-- Card Header -->
+          <div class="flex justify-between items-start border-b border-zinc-800/80 pb-3 relative z-10">
+            <div class="flex items-center gap-2.5">
+              <!-- Mini SVG Logo -->
+              <svg viewBox="0 0 200 200" class="w-7 h-7">
+                <circle cx="100" cy="100" r="95" fill="#000" stroke="#C8102E" stroke-width="8"/>
+                <circle cx="100" cy="100" r="55" fill="#FFF" stroke="#C8102E" stroke-width="6"/>
+                <line x1="100" y1="45" x2="100" y2="155" stroke="#C8102E" stroke-width="3"/>
+                <line x1="45" y1="100" x2="155" y2="100" stroke="#C8102E" stroke-width="3"/>
+              </svg>
+              <div>
+                <h4 class="font-black text-xs tracking-widest text-rcssc-red uppercase">RCSSC MEMBER CARD</h4>
+                <p class="text-[8px] text-zinc-400">Rajshahi Collegiate School Science Club</p>
+              </div>
+            </div>
+            <span id="card-id" class="px-2.5 py-1 rounded-md bg-rcssc-red/20 border border-rcssc-red/40 text-rcssc-red text-[11px] font-mono font-bold tracking-wider">
+              RCSSC-2026-0001
+            </span>
+          </div>
+
+          <!-- Card Body Details -->
+          <div class="relative z-10 my-2">
+            <div class="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">Verified Student Identity</div>
+            <h2 id="card-name" class="text-xl font-black text-white tracking-tight">---</h2>
+            <div class="flex items-center gap-3 mt-1.5 text-xs text-zinc-300 font-medium">
+              <span id="card-class" class="bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700">Class: ---</span>
+              <span id="card-batch" class="bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700">Batch: ---</span>
+            </div>
+            <p id="card-phone" class="text-xs text-zinc-300 font-mono mt-2 flex items-center gap-1.5">
+              <i data-lucide="phone-call" class="w-3 h-3 text-rcssc-red"></i> Phone: ---
+            </p>
+          </div>
+
+          <!-- Card Footer Status -->
+          <div class="flex justify-between items-center pt-2.5 border-t border-zinc-800/80 relative z-10">
+            <span class="text-[9px] text-zinc-500 font-mono">DATABASE ID: VERIFIED</span>
+            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ACTIVE MEMBER
+            </span>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-3">
+          <button onclick="window.print()" class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-xs text-zinc-200 rounded-xl hover:bg-zinc-800 font-semibold flex items-center gap-1.5">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i> Print Member Card
+          </button>
+          <button onclick="resetRegistration()" class="px-4 py-2 bg-rcssc-red/20 border border-rcssc-red/40 text-xs text-rcssc-red rounded-xl hover:bg-rcssc-red/30 font-semibold">
+            Register Another
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VERIFY TAB ==================== -->
+    <section id="view-verify" class="hidden max-w-md mx-auto space-y-6">
+      <div class="p-6 sm:p-8 rounded-3xl bg-rcssc-card border border-zinc-800 shadow-2xl space-y-6">
+        <div class="text-center space-y-2">
+          <div class="w-12 h-12 rounded-full bg-rcssc-red/10 border border-rcssc-red/30 flex items-center justify-center mx-auto text-rcssc-red">
+            <i data-lucide="shield-search" class="w-6 h-6"></i>
+          </div>
+          <h2 class="text-xl font-bold text-white">Member Verification Engine</h2>
+          <p class="text-zinc-400 text-xs">Verify whether a student is a registered member of RCSSC by entering their registered phone number.</p>
+        </div>
+
+        <form onsubmit="handleVerify(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-zinc-400 mb-1.5">Registered Mobile Number</label>
+            <div class="relative">
+              <i data-lucide="phone" class="w-4 h-4 absolute left-3.5 top-3 text-zinc-500"></i>
+              <input id="verify-input" required type="tel" placeholder="e.g. 01977731344" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm font-mono">
+            </div>
+          </div>
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-rcssc-red to-rcssc-red-dark font-semibold rounded-xl text-sm shadow-glow-red hover:brightness-110 transition flex items-center justify-center gap-2">
+            <i data-lucide="search" class="w-4 h-4"></i> Run Database Lookup
+          </button>
+        </form>
+
+        <div id="verify-result" class="hidden pt-4 border-t border-zinc-800"></div>
+      </div>
+    </section>
+
+    <!-- ==================== HIDDEN SMART ADMIN PANEL ==================== -->
+    <section id="view-admin" class="hidden space-y-8">
+      
+      <!-- Hidden Password Auth Screen -->
+      <div id="admin-login-box" class="max-w-md mx-auto p-8 rounded-3xl bg-rcssc-card border border-rcssc-red/40 shadow-2xl text-center space-y-6">
+        <div class="w-12 h-12 rounded-full bg-rcssc-red/20 border border-rcssc-red/50 flex items-center justify-center mx-auto text-rcssc-red">
+          <i data-lucide="lock" class="w-6 h-6"></i>
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-xl font-extrabold text-white">Hidden Control Center</h2>
+          <p class="text-xs text-zinc-400">Restricted Admin Panel. Passcode authorization required.</p>
+        </div>
+        
+        <form onsubmit="handleAdminAuth(event)" class="space-y-4">
+          <div>
+            <input id="admin-pass-input" type="password" placeholder="Admin Passcode (Default: admin)" class="w-full px-4 py-2.5 rounded-xl bg-black border border-zinc-800 text-white focus:border-rcssc-red outline-none text-sm text-center tracking-widest">
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-rcssc-red hover:bg-rcssc-red-dark font-bold rounded-xl text-sm transition shadow-glow-red">
+            Authenticate Access
+          </button>
+        </form>
+        <p class="text-[10px] text-zinc-600">Default password: <code class="text-zinc-400">admin</code> or <code class="text-zinc-400">rcssc2026admin</code></p>
+      </div>
+
+      <!-- Authenticated Smart Dashboard -->
+      <div id="admin-dashboard-box" class="hidden space-y-8">
+        
+        <!-- Dashboard Top Control Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 rounded-2xl bg-rcssc-card border border-zinc-800 gap-4 shadow-xl">
+          <div class="flex items-center gap-3.5">
+            <div class="p-3 bg-rcssc-red/20 border border-rcssc-red/40 rounded-xl text-rcssc-red">
+              <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h2 class="text-xl font-black text-white">Smart Admin Panel</h2>
+              <p class="text-xs text-zinc-400">Manage EC/Sub-Committee assignments, dynamic page sections, & member database.</p>
+            </div>
+          </div>
+          <button onclick="lockAdmin()" class="px-4 py-2 bg-zinc-900 text-xs text-zinc-400 hover:text-white rounded-xl border border-zinc-800 font-semibold flex items-center gap-1.5">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Lock Portal
+          </button>
+        </div>
+
+        <!-- Admin Action Grid -->
+        <div class="grid lg:grid-cols-2 gap-8">
+          
+          <!-- Assign/Add Committee Member with Picture -->
+          <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4 shadow-lg">
+            <h3 class="text-base font-bold text-rcssc-red flex items-center gap-2">
+              <i data-lucide="user-plus" class="w-5 h-5"></i> Add / Update EC Member with Photo
+            </h3>
+            <form onsubmit="handleAssignCommittee(event)" class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Select Registered Member</label>
+                <select id="admin-member-select" required class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none">
+                  <!-- Dynamic Member Options -->
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 mb-1">Committee Level</label>
+                  <select id="admin-committee-type" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none">
+                    <option>Executive Committee -26/27</option>
+                    <option>Sub Committee -26/27</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 mb-1">Designation Role</label>
+                  <input id="admin-designation" required type="text" placeholder="e.g. VICE PRESIDENT" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Profile Photo Image URL (Optional)</label>
+                <input id="admin-ec-photo" type="url" placeholder="https://example.com/photo.jpg" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none">
+              </div>
+
+              <button type="submit" class="w-full py-2.5 bg-rcssc-red hover:bg-rcssc-red-dark text-sm font-bold rounded-xl transition shadow-glow-red">
+                Save EC Member & Photo
+              </button>
+            </form>
+          </div>
+
+          <!-- Add Achievements with Picture -->
+          <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4 shadow-lg">
+            <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+              <i data-lucide="award" class="w-5 h-5"></i> Add New Achievement Entry (with Photo)
+            </h3>
+            <form onsubmit="handleAddAchievement(event)" class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Achievement Title</label>
+                <input id="admin-achieve-title" required type="text" placeholder="e.g. 1st Place - National Math Olympiad" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-amber-400 outline-none">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 mb-1">Year / Session</label>
+                  <input id="admin-achieve-year" required type="text" placeholder="e.g. 2026" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-amber-400 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 mb-1">Image URL</label>
+                  <input id="admin-achieve-img" type="url" placeholder="https://example.com/trophy.jpg" class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-amber-400 outline-none">
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Description / Category</label>
+                <textarea id="admin-achieve-desc" required rows="2" placeholder="Describe the achievement details..." class="w-full px-3.5 py-2 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-amber-400 outline-none resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-black text-sm font-bold rounded-xl transition">
+                Publish Achievement Entry
+              </button>
+            </form>
+          </div>
+
+          <!-- Add Custom Dynamic Web Page Section -->
+          <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4 shadow-lg lg:col-span-2">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="plus-circle" class="text-rcssc-red w-5 h-5"></i> Create New Web Page Section Option
+            </h3>
+            <form onsubmit="handleAddSection(event)" class="space-y-3.5">
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Section Title</label>
+                <input id="admin-sec-title" required type="text" placeholder="e.g. Science Fair Project Call 2026" class="w-full px-3.5 py-2.5 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-1">Section Body Content</label>
+                <textarea id="admin-sec-content" required rows="3" placeholder="Provide detailed section content here..." class="w-full px-3.5 py-2.5 bg-black border border-zinc-800 rounded-xl text-sm text-white focus:border-rcssc-red outline-none resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full py-2.5 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white text-sm font-bold rounded-xl transition">
+                Publish New Page Section
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Complete Registration Database Table -->
+        <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800 space-y-4 shadow-xl">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="database" class="text-rcssc-red w-5 h-5"></i> Registered Members Database
+            </h3>
+            <button onclick="exportDatabaseCSV()" class="px-3 py-1.5 bg-zinc-900 border border-zinc-700 text-xs text-zinc-300 rounded-lg hover:bg-zinc-800 flex items-center gap-1">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV
+            </button>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-zinc-800">
+            <table class="w-full text-left text-sm text-zinc-300">
+              <thead class="bg-zinc-900 text-zinc-400 text-xs uppercase font-mono">
+                <tr>
+                  <th class="p-3.5">Member ID</th>
+                  <th class="p-3.5">Full Name</th>
+                  <th class="p-3.5">Phone (DB Key)</th>
+                  <th class="p-3.5">Class/Batch</th>
+                  <th class="p-3.5">Committee Role</th>
+                  <th class="p-3.5">Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body" class="divide-y divide-zinc-800/80 bg-black/40">
+                <!-- Dynamic Rows Inserted Here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-black border-t border-zinc-900 py-6 mt-12 relative z-10 text-xs text-zinc-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-white">RCSSC</span> • Rajshahi Collegiate School Math & Science Club
+      </div>
+      <div class="text-zinc-400 font-semibold flex items-center gap-1.5 bg-zinc-900/80 px-3 py-1 rounded-full border border-zinc-800">
+        <i data-lucide="code" class="w-3.5 h-3.5 text-rcssc-red"></i> Website Developed by <span class="text-white font-bold">Abrar Al Razee Oytizzoh</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic JavaScript -->
+  <script>
+    // Initial Database Records (Persisted in localStorage)
+    const defaultMembers = [
+      { 
+        id: '1', 
+        memberId: 'RCSSC-2026-0001', 
+        fullName: 'ABRAR AL RAZEE (OYTIZZOH)', 
+        phone: '01977731344', 
+        class: 'Class 10', 
+        batch: "SSC-27'", 
+        committee: 'Executive Committee -26/27', 
+        designation: 'PRESIDENT',
+        photoUrl: ''
+      }
+    ];
+
+    const defaultSections = [
+      { 
+        id: 'sec-1', 
+        title: 'RCSSC Annual Science Olympiad 2026', 
+        content: 'Registration will officially open for the inter-school Olympiad next month. Prepare for physics, chemistry, biology, and higher math problems.' 
+      }
+    ];
+
+    const defaultAchievements = [
+      {
+        id: 'ach-1',
+        title: 'Champion - National Science Fair 2025',
+        year: '2025',
+        description: 'Rajshahi Collegiate School Science Club secured top honors in the regional and national science exhibition.',
+        imageUrl: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80'
+      }
+    ];
+
+    // Load or set default data
+    let dbMembers = JSON.parse(localStorage.getItem('rcssc_db_members')) || defaultMembers;
+    let dbSections = JSON.parse(localStorage.getItem('rcssc_db_sections')) || defaultSections;
+    let dbAchievements = JSON.parse(localStorage.getItem('rcssc_db_achievements')) || defaultAchievements;
+
+    function saveState() {
+      localStorage.setItem('rcssc_db_members', JSON.stringify(dbMembers));
+      localStorage.setItem('rcssc_db_sections', JSON.stringify(dbSections));
+      localStorage.setItem('rcssc_db_achievements', JSON.stringify(dbAchievements));
+      updateStats();
+    }
+
+    function updateStats() {
+      const countEl = document.getElementById('stat-member-count');
+      if (countEl) countEl.innerText = dbMembers.length;
+    }
+
+    // Navigation Switcher for Expanded Pages
+    function switchTab(tab) {
+      ['home', 'about', 'committee', 'achievements', 'events', 'register', 'verify', 'admin'].forEach(t => {
+        const viewEl = document.getElementById(`view-${t}`);
+        if (viewEl) viewEl.classList.add('hidden');
+        
+        const btn = document.getElementById(`tab-${t}`);
+        if (btn && t !== 'admin') {
+          btn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition text-zinc-400 hover:text-white flex items-center gap-1.5';
+        }
+      });
+
+      const activeView = document.getElementById(`view-${tab}`);
+      if (activeView) activeView.classList.remove('hidden');
+
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      if (activeBtn && tab !== 'admin') {
+        activeBtn.className = 'px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-zinc-800 text-white border border-zinc-700/80 flex items-center gap-1.5';
+      }
+      
+      lucide.createIcons();
+    }
+
+    // Render Home, Achievements & Committee Contents
+    function renderHome() {
+      // 1. Render Custom Page Sections
+      const secContainer = document.getElementById('home-sections-container');
+      if (secContainer) {
+        secContainer.innerHTML = dbSections.map(s => `
+          <div class="p-6 rounded-2xl bg-rcssc-card border border-zinc-800/80 hover:border-rcssc-red/50 transition shadow-lg">
+            <h4 class="text-base font-bold text-rcssc-red mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rcssc-red"></span>
+              ${escapeHtml(s.title)}
+            </h4>
+            <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">${escapeHtml(s.content)}</p>
+          </div>
+        `).join('');
+      }
+
+      // 2. Render Committee Members with Photo Support
+      const comContainer = document.getElementById('home-committee-container');
+      const fullComContainer = document.getElementById('full-committee-container');
+      const committeeMembers = dbMembers.filter(m => m.committee);
+
+      const cardHtml = committeeMembers.map(m => `
+        <div class="p-6 rounded-2xl bg-gradient-to-b from-zinc-900 to-black border border-rcssc-red/40 relative overflow-hidden group shadow-lg flex flex-col justify-between">
+          <div class="absolute top-0 right-0 px-3 py-1 bg-rcssc-red/20 text-rcssc-red text-[10px] font-bold uppercase rounded-bl-xl border-b border-l border-rcssc-red/30 font-mono">
+            ${escapeHtml(m.committee)}
+          </div>
+
+          <div class="space-y-3">
+            ${m.photoUrl ? `
+              <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-rcssc-red/50 mx-auto shadow-md">
+                <img src="${escapeHtml(m.photoUrl)}" alt="${escapeHtml(m.fullName)}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x150/111/FFF?text=EC'">
+              </div>
+            ` : `
+              <div class="w-20 h-20 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center mx-auto text-zinc-500">
+                <i data-lucide="user" class="w-10 h-10"></i>
+              </div>
+            `}
+            <div class="text-center">
+              <div class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">RCSSC EXECUTIVE</div>
+              <h4 class="text-lg font-black text-white mt-0.5">${escapeHtml(m.fullName)}</h4>
+              <p class="text-rcssc-red text-xs font-extrabold uppercase mt-0.5 tracking-wider">${escapeHtml(m.designation)}</p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-zinc-800/80 flex justify-between items-center text-[11px] text-zinc-400 font-mono">
+            <span>Batch: ${escapeHtml(m.batch)}</span>
+            <span class="text-emerald-400 font-semibold">✓ VERIFIED</span>
+          </div>
+        </div>
+      `).join('');
+
+      if (comContainer) comContainer.innerHTML = cardHtml;
+      if (fullComContainer) fullComContainer.innerHTML = cardHtml;
+
+      // 3. Render Achievements
+      renderAchievements();
+
+      updateStats();
+    }
+
+    function renderAchievements() {
+      const achContainer = document.getElementById('achievements-container');
+      if (achContainer) {
+        achContainer.innerHTML = dbAchievements.map(a => `
+          <div class="rounded-2xl bg-rcssc-card border border-zinc-800 overflow-hidden hover:border-amber-400/50 transition group shadow-lg flex flex-col justify-between">
+            ${a.imageUrl ? `
+              <div class="h-44 w-full bg-zinc-900 overflow-hidden relative">
+                <img src="${escapeHtml(a.imageUrl)}" alt="${escapeHtml(a.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/18181b/f59e0b?text=RCSSC+Achievement'">
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/80 border border-amber-400/40 text-amber-400 text-xs font-mono font-bold">
+                  ${escapeHtml(a.year)}
+                </span>
+              </div>
+            ` : ''}
+            <div class="p-6 space-y-2">
+              <div class="text-[10px] text-amber-400 font-mono uppercase tracking-widest font-bold">HONOR & AWARD</div>
+              <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">${escapeHtml(a.title)}</h4>
+              <p class="text-xs text-zinc-400 leading-relaxed">${escapeHtml(a.description)}</p>
+            </div>
+            <div class="px-6 pb-4 pt-2 border-t border-zinc-800/80 flex justify-between items-center text-[11px] text-zinc-500 font-mono">
+              <span>RCSSC Science Division</span>
+              <span class="text-amber-400">Awardee Entry</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Dynamic Achievement Creation Handler
+    function handleAddAchievement(e) {
+      e.preventDefault();
+      const title = document.getElementById('admin-achieve-title').value.trim();
+      const year = document.getElementById('admin-achieve-year').value.trim();
+      const imageUrl = document.getElementById('admin-achieve-img').value.trim();
+      const description = document.getElementById('admin-achieve-desc').value.trim();
+
+      dbAchievements.unshift({
+        id: 'ach-' + Date.now(),
+        title,
+        year,
+        imageUrl,
+        description
+      });
+
+      saveState();
+      renderAchievements();
+      document.getElementById('admin-achieve-title').value = '';
+      document.getElementById('admin-achieve-year').value = '';
+      document.getElementById('admin-achieve-img').value = '';
+      document.getElementById('admin-achieve-desc').value = '';
+
+      alert('Achievement successfully published!');
+    }
+
+    function handleAssignCommittee(e) {
+      e.preventDefault();
+      const id = document.getElementById('admin-member-select').value;
+      const type = document.getElementById('admin-committee-type').value;
+      const desig = document.getElementById('admin-designation').value.trim();
+      const photoUrl = document.getElementById('admin-ec-photo').value.trim();
+
+      const member = dbMembers.find(m => m.id === id);
+      if (member) {
+        member.committee = type;
+        member.designation = desig;
+        if (photoUrl) member.photoUrl = photoUrl;
+        
+        saveState();
+        renderAdminTable();
+        renderHome();
+        alert(`Successfully assigned ${member.fullName} as ${desig} with photo!`);
+      }
+    }
+
+    function lockAdmin() {
+      document.getElementById('admin-login-box').classList.remove('hidden');
+      document.getElementById('admin-dashboard-box').classList.add('hidden');
+      document.getElementById('admin-pass-input').value = '';
+    }
+
+    // Admin Dashboard Renderers
+    function renderAdminTable() {
+      const tbody = document.getElementById('admin-table-body');
+      if (tbody) {
+        tbody.innerHTML = dbMembers.map(m => `
+          <tr class="hover:bg-zinc-900/60 transition">
+            <td class="p-3.5 font-mono text-xs text-rcssc-red font-bold">${escapeHtml(m.memberId)}</td>
+            <td class="p-3.5 font-semibold text-white">${escapeHtml(m.fullName)}</td>
+            <td class="p-3.5 font-mono text-xs text-zinc-300">${escapeHtml(m.phone)}</td>
+            <td class="p-3.5 text-xs">${escapeHtml(m.class)} (${escapeHtml(m.batch)})</td>
+            <td class="p-3.5">
+              ${m.committee ? `<span class="text-xs text-rcssc-red font-bold">${escapeHtml(m.designation)}</span>` : '<span class="text-xs text-zinc-600">General Member</span>'}
+            </td>
+            <td class="p-3.5">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold">
+                VERIFIED
+              </span>
+            </td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    function populateMemberSelect() {
+      const select = document.getElementById('admin-member-select');
+      if (select) {
+        select.innerHTML = dbMembers.map(m => `
+          <option value="${m.id}">${escapeHtml(m.fullName)} (${escapeHtml(m.phone)}) - ${escapeHtml(m.batch)}</option>
+        `).join('');
+      }
+    }
+
+    function handleAssignCommittee(e) {
+      e.preventDefault();
+      const id = document.getElementById('admin-member-select').value;
+      const type = document.getElementById('admin-committee-type').value;
+      const desig = document.getElementById('admin-designation').value.trim();
+
+      const member = dbMembers.find(m => m.id === id);
+      if (member) {
+        member.committee = type;
+        member.designation = desig;
+        saveState();
+        renderAdminTable();
+        renderHome();
+        alert(`Successfully assigned ${member.fullName} as ${desig}!`);
+      }
+    }
+
+    function handleAddSection(e) {
+      e.preventDefault();
+      const title = document.getElementById('admin-sec-title').value.trim();
+      const content = document.getElementById('admin-sec-content').value.trim();
+
+      dbSections.unshift({ id: String(Date.now()), title, content });
+      saveState();
+      renderHome();
+      document.getElementById('admin-sec-title').value = '';
+      document.getElementById('admin-sec-content').value = '';
+      alert('New web page section published successfully!');
+    }
+
+    function exportDatabaseCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,MemberID,FullName,Phone,Class,Batch,Committee,Designation\n";
+      dbMembers.forEach(m => {
+        csvContent += `"${m.memberId}","${m.fullName}","${m.phone}","${m.class}","${m.batch}","${m.committee || ''}","${m.designation || ''}"\n`;
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "rcssc_members_database.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Initialize App
+    window.onload = function() {
+      lucide.createIcons();
+      renderHome();
+    };
+  </script>
+</body>
+</html>
